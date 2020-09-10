@@ -9,7 +9,7 @@ class CustomMenu extends StatelessWidget {
 
     return SingleChildScrollView(
       child: Container(
-          height: 100,
+          height: 130,
           child: ListView.builder(
             itemCount: menudetails.length,
             scrollDirection: Axis.vertical,

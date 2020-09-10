@@ -12,13 +12,13 @@ class CustomCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var activitydetails = Provider.of<FitnessData>(context).data;
+    var activitydetails = Provider.of<FitnessData>(context).fitnessactivity;
 
     return ListView.builder(
         itemCount: activitydetails.length,
         itemBuilder: (BuildContext context, i) {
           return Container(
-            height: 250,
+            height: 205,
             child: Card(
               elevation: 5,
               shape: RoundedRectangleBorder(

@@ -65,9 +65,7 @@ class _Page1State extends State<Page1> {
                 ],
               ),
             ),
-            SizedBox(
-              height: 40,
-            ),
+           
             Expanded(
               child: Container(
                 decoration: BoxDecoration(

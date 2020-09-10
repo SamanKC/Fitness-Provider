@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 class CustomActivities extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var activitydetails = Provider.of<FitnessData>(context).data;
+    var activitydetails = Provider.of<FitnessData>(context).fitnessactivity;
 
     return SingleChildScrollView(
       child: Container(
@@ -40,6 +40,7 @@ class CustomActivities extends StatelessWidget {
                           width: 10,
                         ),
                         Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(activitydetails[i].activity),
                             Text(activitydetails[i].subactivity),
@@ -52,9 +53,7 @@ class CustomActivities extends StatelessWidget {
                 ],
               );
             },
-          )
-
-          ),
+          )),
     );
   }
 }

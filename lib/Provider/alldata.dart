@@ -1,11 +1,10 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dataconstraint.dart';
 
 class FitnessData extends ChangeNotifier {
   bool isDarkModeOn = false;
 
-  List<FitnessDetails> fitnessactivity = [
+  List<FitnessDetails> _fitnessactivity = [
     FitnessDetails(
       activity: 'Running',
       subactivity: 'run 5 km a day',
@@ -23,10 +22,10 @@ class FitnessData extends ChangeNotifier {
     ),
   ];
 
-  List<FitnessDetails> get data => fitnessactivity;
+  List<FitnessDetails> get fitnessactivity => _fitnessactivity;
 
-  set data(List<FitnessDetails> val) {
-    fitnessactivity = val;
+  set fitnessactivity(List<FitnessDetails> val) {
+    _fitnessactivity = val;
     notifyListeners();
   }
 
@@ -35,11 +34,11 @@ class FitnessData extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<MenuDetails> allmenu = [
+  List<MenuDetails> _allmenu = [
     MenuDetails(
       menu: 'Breakfast',
       submenu: 'eat healthy',
-      icon: Icons.menu,
+      // icon: Icons.menu,
     ),
     MenuDetails(
       menu: 'Breakfast',
@@ -57,10 +56,10 @@ class FitnessData extends ChangeNotifier {
       icon: Icons.menu,
     ),
   ];
-  List<MenuDetails> get menu => allmenu;
+  List<MenuDetails> get menu => _allmenu;
 
   set menu(List<MenuDetails> val) {
-    allmenu = val;
+    _allmenu = val;
     notifyListeners();
   }
 
@@ -93,12 +92,16 @@ class FitnessData extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addactivity(newmenu, newsubmenu) {
-    final act = FitnessDetails(activity: newmenu, subactivity: newsubmenu);
-    // final subact = FitnessDetails(subactivity: newsubmenu);
-    fitnessactivity.add(act);
-    print(act.activity);
-    
-    // _fitnessactivity.add(subact);
+
+  
+
+  void addactivity({text, text1}) {
+    fitnessactivity.add(FitnessDetails(activity: text, subactivity: text1));
+    notifyListeners();
+  }
+
+  void addmenu({text, text1}) {
+    _allmenu.add(MenuDetails(menu: text, submenu: text1));
+    notifyListeners();
   }
 }

@@ -1,21 +1,22 @@
 import 'package:fitness_provider/Provider/alldata.dart';
+import 'package:fitness_provider/Provider/dataconstraint.dart';
 
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
-class AddActivityScreen extends StatefulWidget {
+class AddMenuScreen extends StatefulWidget {
   @override
-  _AddActivityScreenState createState() => _AddActivityScreenState();
+  _AddMenuScreenState createState() => _AddMenuScreenState();
 }
 
-class _AddActivityScreenState extends State<AddActivityScreen> {
-  final _actcontroller = TextEditingController();
-  final _subactcontroller = TextEditingController();
+class _AddMenuScreenState extends State<AddMenuScreen> {
+  final _menucontroller = TextEditingController();
+  final _submenucontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    var activityadd = Provider.of<FitnessData>(context, listen: false);
+    var menuadd = Provider.of<FitnessData>(context, listen: false);
 
     return Container(
       color: Color(0xff757575),
@@ -33,7 +34,7 @@ class _AddActivityScreenState extends State<AddActivityScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Text(
-              'Add Activity',
+              'Add Menu',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 30.0,
@@ -43,15 +44,10 @@ class _AddActivityScreenState extends State<AddActivityScreen> {
             SizedBox(
               height: 20,
             ),
-            // TextField(
-            //   autofocus: true,
-            //   textAlign: TextAlign.center,
-            //   controller: _actcontroller,
-            // ),
             TextFormField(
-              controller: _actcontroller,
+              controller: _menucontroller,
               decoration: new InputDecoration(
-                labelText: "Enter your Activity",
+                labelText: "Enter menu",
                 fillColor: Colors.white,
                 border: new OutlineInputBorder(
                   borderRadius: new BorderRadius.circular(25.0),
@@ -60,7 +56,7 @@ class _AddActivityScreenState extends State<AddActivityScreen> {
               ),
               validator: (val) {
                 if (val.length == 0) {
-                  return "Activity cannot be empty";
+                  return "Menu cannot be empty";
                 } else {
                   return null;
                 }
@@ -70,9 +66,9 @@ class _AddActivityScreenState extends State<AddActivityScreen> {
               height: 20,
             ),
             TextFormField(
-              controller: _subactcontroller,
+              controller: _submenucontroller,
               decoration: new InputDecoration(
-                labelText: "Enter your SubActivity",
+                labelText: "Enter submenu",
                 fillColor: Colors.white,
                 border: new OutlineInputBorder(
                   borderRadius: new BorderRadius.circular(25.0),
@@ -81,7 +77,7 @@ class _AddActivityScreenState extends State<AddActivityScreen> {
               ),
               validator: (val) {
                 if (val.length == 0) {
-                  return "SubActivity cannot be empty";
+                  return "Submenu cannot be empty";
                 } else {
                   return null;
                 }
@@ -90,7 +86,6 @@ class _AddActivityScreenState extends State<AddActivityScreen> {
             SizedBox(
               height: 20,
             ),
-
             FlatButton(
               child: Text(
                 'Add',
@@ -100,8 +95,8 @@ class _AddActivityScreenState extends State<AddActivityScreen> {
               ),
               color: Colors.lightBlueAccent,
               onPressed: () {
-                activityadd.addactivity(
-                    text: _actcontroller.text, text1: _subactcontroller.text);
+                menuadd.addmenu(
+                    text: _menucontroller.text, text1: _submenucontroller.text);
                 Navigator.pop(context);
               },
             ),

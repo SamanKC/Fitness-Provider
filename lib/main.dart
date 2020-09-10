@@ -3,6 +3,7 @@ import 'package:fitness_provider/Pages/Page2.dart';
 import 'package:fitness_provider/Pages/Page3.dart';
 import 'package:fitness_provider/Pages/Page4.dart';
 import 'package:fitness_provider/Widgets/add_activity_bottom.dart';
+import 'package:fitness_provider/Widgets/add_menu_bottom.dart';
 import 'package:fitness_provider/constants.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,8 @@ void main() => runApp(
           ChangeNotifierProvider<FitnessData>(
               builder: (BuildContext context) => FitnessData())
         ],
-        child: MyApp(),
+        child:
+            Consumer<FitnessData>(builder: (context, value, child) => MyApp()),
       ),
     );
 
@@ -109,7 +111,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                               padding: EdgeInsets.only(
                                   bottom:
                                       MediaQuery.of(context).viewInsets.bottom),
-                              child: AddActivityScreen(),
+                              child: AddMenuScreen(),
                             ),
                           ));
                 }),

@@ -1,7 +1,10 @@
 import 'package:fitness_provider/Navigation/TopNavigationBar.dart';
 import 'package:fitness_provider/Provider/alldata.dart';
+import 'package:fitness_provider/Widgets/barchart.dart';
 import 'package:fitness_provider/Widgets/circularstar.dart';
-
+import 'package:fitness_provider/Widgets/fichart.dart';
+import 'package:fitness_provider/Widgets/goal.dart';
+import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -11,6 +14,7 @@ class Page3 extends StatefulWidget {
 }
 
 class _Page3State extends State<Page3> {
+  
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -18,6 +22,9 @@ class _Page3State extends State<Page3> {
         child: Column(
           children: <Widget>[
             TopBar(),
+            SizedBox(
+              height: 20,
+            ),
             Expanded(
               child: Container(
                 decoration: BoxDecoration(
@@ -87,40 +94,21 @@ class _Page3State extends State<Page3> {
                               fontWeight: FontWeight.bold,
                             )),
                         Container(
-                          height: 150,
                           child: Card(
-                            elevation: 5,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20.0)),
-                            child: Row(
-                              children: <Widget>[
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Row(
-                                      // mainAxisAlignment: MainAxisAlignment.spaceAround,
-
-                                      children: <Widget>[
-                                        SizedBox(
-                                          width: 50,
-                                        ),
-                                        Column(
-                                          children: <Widget>[
-                                            StatActivities(
-                                              staticon: Icons.directions_run,
-                                              act: 'Running',
-                                              subact: '2500',
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        )
+                              elevation: 5,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20.0)),
+                              // child: GoalChart(data: data)),
+                              child: BarChartSample1()),
+                        ),
+                        // Container(
+                        //   child: Card(
+                        //       elevation: 5,
+                        //       shape: RoundedRectangleBorder(
+                        //           borderRadius: BorderRadius.circular(20.0)),
+                        //       // child: GoalChart(data: data)),
+                        //       child: TimeSeriesBar()),
+                        // )
                       ],
                     ),
                   ),

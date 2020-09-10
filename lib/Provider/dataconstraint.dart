@@ -7,7 +7,6 @@ class FitnessDetails {
   FitnessDetails({this.activity, this.subactivity});
 }
 
-
 class MenuDetails {
   final String menu;
   final String submenu;

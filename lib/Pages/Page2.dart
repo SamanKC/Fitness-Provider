@@ -2,10 +2,12 @@ import 'package:fitness_provider/CustomFolder/customlistactivities.dart';
 import 'package:fitness_provider/CustomFolder/custommenuactivities.dart';
 import 'package:fitness_provider/Navigation/TopNavigationBar.dart';
 import 'package:fitness_provider/Provider/alldata.dart';
+import 'package:fitness_provider/Widgets/calendar.dart';
 
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
+
 class Page2 extends StatefulWidget {
   @override
   _Page2State createState() => _Page2State();
@@ -14,7 +16,6 @@ class Page2 extends StatefulWidget {
 class _Page2State extends State<Page2> {
   @override
   Widget build(BuildContext context) {
-    
     return SafeArea(
       child: Container(
         child: Column(
@@ -24,46 +25,47 @@ class _Page2State extends State<Page2> {
               child: Column(
                 children: <Widget>[
                   TopBar(),
-                  // SizedBox(
-                  //   height: 10,
-                  // ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      FlatButton(
-                          onPressed: () {},
-                          child: Text(
-                            "Today",
-                            style: TextStyle(
-                              fontSize: 20,
-                            ),
-                          )),
-                      FlatButton(
-                          onPressed: () {},
-                          child: Text(
-                            "Week",
-                            style: TextStyle(
-                              fontSize: 20,
-                            ),
-                          )),
-                      FlatButton(
-                          onPressed: () {},
-                          child: Text(
-                            "Month",
-                            style: TextStyle(
-                              fontSize: 20,
-                            ),
-                          )),
-                      FlatButton(
-                          onPressed: () {},
-                          child: Text(
-                            "Year",
-                            style: TextStyle(
-                              fontSize: 20,
-                            ),
-                          )),
-                    ],
-                  )
+                  SizedBox(
+                    height: 10,
+                  ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  //   children: <Widget>[
+                  //     FlatButton(
+                  //         onPressed: () {},
+                  //         child: Text(
+                  //           "Today",
+                  //           style: TextStyle(
+                  //             fontSize: 20,
+                  //           ),
+                  //         )),
+                  //     FlatButton(
+                  //         onPressed: () {},
+                  //         child: Text(
+                  //           "Week",
+                  //           style: TextStyle(
+                  //             fontSize: 20,
+                  //           ),
+                  //         )),
+                  //     FlatButton(
+                  //         onPressed: () {},
+                  //         child: Text(
+                  //           "Month",
+                  //           style: TextStyle(
+                  //             fontSize: 20,
+                  //           ),
+                  //         )),
+                  //     FlatButton(
+                  //         onPressed: () {},
+                  //         child: Text(
+                  //           "Year",
+                  //           style: TextStyle(
+                  //             fontSize: 20,
+                  //           ),
+                  //         )),
+                  //   ],
+                  // )
+                  Page2Calendar()
                 ],
               ),
             ),
