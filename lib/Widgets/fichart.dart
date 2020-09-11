@@ -1,12 +1,12 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-class BarChartSample1 extends StatefulWidget {
+class BarChartPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => BarChartSample1State();
+  State<StatefulWidget> createState() => BarChartPageState();
 }
 
-class BarChartSample1State extends State<BarChartSample1> {
+class BarChartPageState extends State<BarChartPage> {
   @override
   Widget build(BuildContext context) {
     return Card(

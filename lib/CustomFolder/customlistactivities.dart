@@ -1,4 +1,5 @@
 import 'package:fitness_provider/Provider/alldata.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -30,8 +31,7 @@ class CustomActivities extends StatelessWidget {
                                 color: Colors.orange,
                                 borderRadius: BorderRadius.circular(10.0)),
                             child: Icon(
-                              Icons.local_library,
-                              // activitydetails[i].icon,
+                              activitydetails[i].icon,
                               size: 30,
                             ),
                           ),
@@ -49,7 +49,7 @@ class CustomActivities extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Text('RandomText'),
+                  Text(activitydetails[i].time),
                 ],
               );
             },

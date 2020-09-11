@@ -1,26 +1,51 @@
 import 'package:flutter/material.dart';
 import 'dataconstraint.dart';
+import 'package:charts_flutter/flutter.dart' as charts;
 
 class FitnessData extends ChangeNotifier {
   bool isDarkModeOn = false;
+  Map<DateTime, List<dynamic>> _events;
 
+  FitnessDetails fitness;
   List<FitnessDetails> _fitnessactivity = [
     FitnessDetails(
-      activity: 'Running',
-      subactivity: 'run 5 km a day',
-      // icon: Icons.ac_unit,
-    ),
+        activity: 'Running',
+        subactivity: 'run 5 km a day',
+        icon: Icons.ac_unit,
+        time: "11:37 PM",
+        date: "Sep 10,2020"),
     FitnessDetails(
-      activity: 'Running',
-      subactivity: 'run 5 km a day',
-      // icon: Icons.ac_unit,
-    ),
+        activity: 'Running',
+        subactivity: 'run 5 km a day',
+        icon: Icons.ac_unit,
+        time: "11:37 PM",
+        date: "Sep 10,2020"),
     FitnessDetails(
-      activity: 'Running',
-      subactivity: 'run 5 km a day',
-      // icon: Icons.ac_unit,
-    ),
+        activity: 'Running',
+        subactivity: 'run 5 km a day',
+        icon: Icons.ac_unit,
+        time: "11:37 PM",
+        date: "Sep 20,2020"),
   ];
+  List<FitnessDetails> _selectedEvents = [];
+  int _selectedDaysItem = 1;
+  int get selectedDaysItem => _selectedDaysItem;
+  set selectedDaysItem(int val) {
+    _selectedDaysItem = val;
+    notifyListeners();
+  }
+
+  List<FitnessData> list = [];
+  var timeSeries;
+  Future buildGraphData() async {
+    this.timeSeries = [
+      charts.Series<FitnessData, DateTime>(
+          id: 'timeSeriesChart',
+          domainFn: (FitnessData data, _) => data.timeSeries,
+          measureFn: (FitnessData data, _) => data.timeSeries,
+          data: list)
+    ];
+  }
 
   List<FitnessDetails> get fitnessactivity => _fitnessactivity;
 
@@ -29,8 +54,18 @@ class FitnessData extends ChangeNotifier {
     notifyListeners();
   }
 
+  int _todaysEventnumber = 0;
+
+  Map<DateTime, List<FitnessDetails>> get events => _events;
+  List<FitnessDetails> get selectedEvents => _selectedEvents;
+  int get todaysEventnumber => _todaysEventnumber;
   void updateTheme() {
     isDarkModeOn = !isDarkModeOn;
+    notifyListeners();
+  }
+
+  void eve() {
+    this._events = events;
     notifyListeners();
   }
 
@@ -38,70 +73,121 @@ class FitnessData extends ChangeNotifier {
     MenuDetails(
       menu: 'Breakfast',
       submenu: 'eat healthy',
-      // icon: Icons.menu,
+      icon: Icons.menu,
+      time: "11:37 PM",
+      date: "Sep 10,2020",
     ),
     MenuDetails(
       menu: 'Breakfast',
       submenu: 'eat healthy',
       icon: Icons.menu,
+      time: "11:37 PM",
+      date: "Sep 10,2020",
     ),
     MenuDetails(
       menu: 'Breakfast',
       submenu: 'eat healthy',
       icon: Icons.menu,
+      time: "11:37 PM",
+      date: "Sep 10,2020",
     ),
     MenuDetails(
       menu: 'Breakfast',
       submenu: 'eat healthy',
       icon: Icons.menu,
+      time: "11:37 PM",
+      date: "Sep 10,2020",
     ),
   ];
-  List<MenuDetails> get menu => _allmenu;
+  List<MenuDetails> get fitnessmenu => _allmenu;
 
   set menu(List<MenuDetails> val) {
     _allmenu = val;
     notifyListeners();
   }
 
-  List<ActivityIcons> iconactivity = [
+  List<ActivityIcons> _iconactivity = [
     ActivityIcons(
-      icon: Icons.local_activity,
+      icon: Icon(Icons.router),
       icontitle: 'eat healthy',
     ),
     ActivityIcons(
-      icon: Icons.local_cafe,
+      icon: Icon(Icons.rounded_corner),
       icontitle: 'eat healthy',
     ),
     ActivityIcons(
-      icon: Icons.local_dining,
+      icon: Icon(Icons.directions_bike),
       icontitle: 'eat healthy',
     ),
     ActivityIcons(
-      icon: Icons.local_grocery_store,
+      icon: Icon(Icons.local_grocery_store),
       icontitle: 'eat healthy',
     ),
     ActivityIcons(
-      icon: Icons.local_library,
+      icon: Icon(Icons.local_library),
       icontitle: 'eat healthy',
     ),
   ];
-  List<ActivityIcons> get icons => iconactivity;
+
+  List<ActivityIcons> get icons => _iconactivity;
 
   set icons(List<ActivityIcons> val) {
-    iconactivity = val;
+    _iconactivity = val;
     notifyListeners();
   }
 
+  List<MenuIcons> _iconmenu = [
+    MenuIcons(
+      icon: Icon(Icons.access_alarm),
+      icontitle: 'eat healthy',
+    ),
+    MenuIcons(
+      icon: Icon(Icons.fastfood),
+      icontitle: 'eat healthy',
+    ),
+    MenuIcons(
+      icon: Icon(Icons.local_dining),
+      icontitle: 'eat healthy',
+    ),
+    MenuIcons(
+      icon: Icon(Icons.local_grocery_store),
+      icontitle: 'eat healthy',
+    ),
+    MenuIcons(
+      icon: Icon(Icons.local_library),
+      icontitle: 'eat healthy',
+    ),
+  ];
 
-  
+  List<MenuIcons> get iconsmenu => _iconmenu;
 
-  void addactivity({text, text1}) {
-    fitnessactivity.add(FitnessDetails(activity: text, subactivity: text1));
+  set iconsmenu(List<MenuIcons> val) {
+    _iconmenu = val;
     notifyListeners();
   }
 
-  void addmenu({text, text1}) {
-    _allmenu.add(MenuDetails(menu: text, submenu: text1));
+  void addactivity({text, text1, selectedicon, picktime, pickdate}) {
+    fitnessactivity.add(FitnessDetails(
+        activity: text,
+        subactivity: text1,
+        icon: selectedicon.icon,
+        time: picktime,
+        date: pickdate));
     notifyListeners();
   }
+
+  void addmenu({texts, texts1, selectedicon, picktime, pickdate}) {
+    fitnessmenu.add(MenuDetails(
+      menu: texts,
+      submenu: texts1,
+      icon: selectedicon.icon,
+      time: picktime,
+      date: pickdate,
+    ));
+    notifyListeners();
+  }
+
+  // showEvents({fitnessact, controller}) {
+  //   events[controller] = [FitnessDetails(activity: fitnessact.toString(), subactivity: controller)];
+  // }
 }

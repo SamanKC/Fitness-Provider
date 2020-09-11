@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 class CustomMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var menudetails = Provider.of<FitnessData>(context).menu;
+    var menudetails = Provider.of<FitnessData>(context).fitnessmenu;
 
     return SingleChildScrollView(
       child: Container(
@@ -47,7 +47,7 @@ class CustomMenu extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Text('RandomText'),
+                  Text(menudetails[i].time),
                 ],
               );
             },

@@ -3,19 +3,30 @@ import 'package:flutter/material.dart';
 class FitnessDetails {
   final String activity;
   final String subactivity;
-  // final IconData icon;
-  FitnessDetails({this.activity, this.subactivity});
+  final IconData icon;
+  final String time;
+  final String date;
+  FitnessDetails(
+      {this.activity, this.subactivity, this.icon, this.time, this.date});
 }
 
 class MenuDetails {
   final String menu;
   final String submenu;
   final IconData icon;
-  MenuDetails({this.menu, this.submenu, this.icon});
+  final String time;
+  final String date;
+  MenuDetails({this.menu, this.submenu, this.icon, this.time, this.date});
 }
 
 class ActivityIcons {
-  final IconData icon;
+  final Icon icon;
   final String icontitle;
   ActivityIcons({this.icon, this.icontitle});
+}
+
+class MenuIcons {
+  final Icon icon;
+  final String icontitle;
+  MenuIcons({this.icon, this.icontitle});
 }

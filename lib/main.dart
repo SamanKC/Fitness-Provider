@@ -122,7 +122,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
               labelStyle: TextStyle(fontSize: 18.0),
               onTap: () => showModalBottomSheet(
                 context: context,
-                isScrollControlled: false,
+                isScrollControlled: true,
                 builder: (context) => SingleChildScrollView(
                   child: Container(
                     padding: EdgeInsets.only(
