@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import 'package:provider/provider.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 class AddActivityScreen extends StatefulWidget {
   @override
@@ -12,11 +13,24 @@ class AddActivityScreen extends StatefulWidget {
 }
 
 class _AddActivityScreenState extends State<AddActivityScreen> {
-  final _actcontroller = TextEditingController();
-  final _subactcontroller = TextEditingController();
+  // final _actcontroller = TextEditingController();
+  // final _subactcontroller = TextEditingController();
+  TextEditingController _actcontroller;
+  TextEditingController _subactcontroller;
   DateTime currentdate = DateTime.now();
   TimeOfDay _currenttime = TimeOfDay.now();
   ActivityIcons selecteduser;
+  CalendarController _controller;
+  FitnessData fitness;
+  FitnessDetails fitnessDetails;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = CalendarController();
+    _actcontroller = TextEditingController();
+    _subactcontroller = TextEditingController();
+  }
 
   Future<Null> _selectdate(BuildContext context) async {
     final DateTime _seldate = await showDatePicker(
@@ -49,10 +63,10 @@ class _AddActivityScreenState extends State<AddActivityScreen> {
     final MaterialLocalizations localizations =
         MaterialLocalizations.of(context);
     final formattedTimeOfDay = localizations.formatTimeOfDay(_currenttime);
-    var activityadd = Provider.of<FitnessData>(context, listen: false);
+    var fitness = Provider.of<FitnessData>(context, listen: false);
     final displayDate = DateFormat.yMMMd().format(currentdate);
     var iconsdetails = Provider.of<FitnessData>(context).icons;
-
+    var theControllerMethod = _controller.selectedDay;
     return Container(
       color: Color(0xff757575),
       height: 410,
@@ -180,24 +194,68 @@ class _AddActivityScreenState extends State<AddActivityScreen> {
               ],
             ),
             FlatButton(
-              child: Text(
-                'Add',
-                style: TextStyle(
-                  color: Colors.white,
+                child: Text(
+                  'Add',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
                 ),
-              ),
-              color: Colors.lightBlueAccent,
-              onPressed: () {
-                activityadd.addactivity(
-                    text: _actcontroller.text,
-                    text1: _subactcontroller.text,
-                    pickdate: displayDate,
-                    picktime: formattedTimeOfDay,
-                    selectedicon: selecteduser.icon);
+                color: Colors.lightBlueAccent,
+                onPressed: () {
+                  print("-------------------------------------------");
+                  print(fitness.events.length);
+                  if (fitness.events[_controller.selectedDay] != null) {
+                    print(
+                        "-----------------------------ssssssssssssssssssssssssssssssss--------------");
 
-                Navigator.pop(context);
-              },
-            ),
+                    fitness.addactivity(
+                      text: _actcontroller.text,
+                      text1: _subactcontroller.text,
+                      selectedicon: selecteduser,
+                      picktime: formattedTimeOfDay,
+                      controller: theControllerMethod,
+                    );
+                  } else {
+                    print(
+                        "----------------------sdfjhasjdfhjkashfjkshdfjkhasfd---------------------");
+
+                    fitness.showingTheEvent(
+                        activity: _actcontroller.text,
+                        subactivity: _subactcontroller.text,
+                        icon: selecteduser,
+                        time: formattedTimeOfDay,
+                        controller: theControllerMethod);
+                  }
+
+                  // if (fitnessDetails == null) {
+                  //   print("No list");
+                  // } else {
+                  //   if (fitness.events[_controller.selectedDay] != null) {
+                  //     activityadd.addactivity(
+                  //         text: _actcontroller.text,
+                  //         text1: _subactcontroller.text,
+                  //         pickdate: displayDate,
+                  //         picktime: formattedTimeOfDay,
+                  //         selectedicon: selecteduser.icon,
+                  //         controller: theControllerMethod);
+                  //   } else {
+                  //     activityadd.showingTheEvent(
+                  //         activity: _actcontroller.text,
+                  //         subactivity: _subactcontroller.text,
+                  //         time: formattedTimeOfDay,
+                  //         icon: selecteduser.icon,
+                  //         controller: theControllerMethod);
+                  //   }
+
+                  // activityadd.addactivity(
+                  //     text: _actcontroller.text,
+                  //     text1: _subactcontroller.text,
+                  //     pickdate: displayDate,
+                  //     picktime: formattedTimeOfDay,
+                  //     selectedicon: selecteduser.icon,
+                  //     controller: theControllerMethod);
+                  Navigator.pop(context);
+                }),
           ],
         ),
       ),

@@ -1,39 +1,135 @@
+import 'package:fitness_provider/CustomFolder/customlistactivities.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'dataconstraint.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
 class FitnessData extends ChangeNotifier {
   bool isDarkModeOn = false;
-  Map<DateTime, List<dynamic>> _events;
+  // Map<DateTime, List<FitnessDetails>> _events = {
+  //   DateTime.now(): [
+  //     FitnessDetails(
+  //         activity: "hello",
+  //         subactivity: "sdfh",
+  //         icon: Icons.ac_unit,
+  //         date: "sdf",
+  //         time: "sfsdff")
+  //   ]
+  // };
 
-  FitnessDetails fitness;
+  Map<DateTime, List<FitnessDetails>> _events = {};
+  // _events[DateTime.now()] = ['abc'];
+  // List<FitnessDetails> _selectedEvents = [FitnessDetails(
+  //         activity: "hello",
+  //         subactivity: "sdfh",
+  //         icon: Icons.ac_unit,
+  //         date: "sdf",
+  //         time: "sfsdff")];
+  List<FitnessDetails> _selectedEvents = [];
+  List<FitnessDetails> get selectedEvents => _selectedEvents;
+  Map<DateTime, List<FitnessDetails>> get events => _events;
+  set events(Map<DateTime, List<FitnessDetails>> val) {
+    _events = val;
+    notifyListeners();
+  }
+
+  showingTheEvent({activity, subactivity, icon, time, controller}) {
+    events[controller] = [
+      FitnessDetails(
+        activity: activity,
+        subactivity: subactivity,
+        icon: icon,
+        time: time,
+      ),
+    ];
+    notifyListeners();
+  }
+
+  set selectedEvents(List<FitnessDetails> val) {
+    _selectedEvents = val;
+    notifyListeners();
+  }
+
   List<FitnessDetails> _fitnessactivity = [
     FitnessDetails(
         activity: 'Running',
         subactivity: 'run 5 km a day',
         icon: Icons.ac_unit,
         time: "11:37 PM",
-        date: "Sep 10,2020"),
+        date: "Sep 1, 2020"),
     FitnessDetails(
         activity: 'Running',
         subactivity: 'run 5 km a day',
         icon: Icons.ac_unit,
         time: "11:37 PM",
-        date: "Sep 10,2020"),
+        date: "Sep 1, 2020"),
     FitnessDetails(
         activity: 'Running',
         subactivity: 'run 5 km a day',
         icon: Icons.ac_unit,
         time: "11:37 PM",
-        date: "Sep 20,2020"),
+        date: "Sep 14, 2020"),
   ];
-  List<FitnessDetails> _selectedEvents = [];
-  int _selectedDaysItem = 1;
-  int get selectedDaysItem => _selectedDaysItem;
-  set selectedDaysItem(int val) {
-    _selectedDaysItem = val;
+
+  List<FitnessDetails> get fitnessactivity => _fitnessactivity;
+
+  set fitnessactivity(List<FitnessDetails> val) {
+    _fitnessactivity = val;
     notifyListeners();
   }
+
+  // /// Compare dates, return a bool value. [True] is same date or [false] else
+  // bool compare = false;
+  // compareDate(dateA, date) {
+  //   print(dateA);
+  //   date = fitnessactivity.;
+  //   if (dateA == date
+  //       // dateA?.day == date?.day &&
+  //       // dateA?.year == date?.year
+  //       ) {
+  //     compare = true;
+  //     notifyListeners();
+  //   }
+  //   compare = false;
+  //   notifyListeners();
+  // }
+
+  settingTheValue({controller}) {
+    fitnessactivity = events[controller];
+    notifyListeners();
+  }
+
+  // showTodaysEventlist() {
+  //   List<Widget> listViewContainer = [];
+  //   String calendarFormattedDate;
+  //   DateTime now = DateTime.now();
+  //   // final displayDate = DateFormat.yMMMd().format(now);
+  //   String formattedDate =
+  //       DateFormat('yyyy-MM-dd').format(now); //this is todays date
+  //   List theConvertedKeysList = events.keys.toList(); //keys list
+  //   for (int i = 0; i < theConvertedKeysList.length; i++) {
+  //     calendarFormattedDate =
+  //         DateFormat('yyyy-MM-dd').format(theConvertedKeysList[i]);
+  //     if (calendarFormattedDate == formattedDate) {
+  //       for (int j = 0; j < events[theConvertedKeysList[i]].length; j++) {
+  //         listViewContainer.add(Padding(
+  //           padding: const EdgeInsets.all(8.0),
+  //           child: CustomActivities(
+  //             activity: events[theConvertedKeysList[i]][j].activity,
+  //             subactivity: events[theConvertedKeysList[i]][j].subactivity,
+  //             icon: events[theConvertedKeysList[i]][j].icon,
+  //             time: events[theConvertedKeysList[i]][j].time,
+  //           ),
+  //         ));
+  //       }
+  //     } else {
+  //       Container(
+  //         child: Text("There is no any events"),
+  //       );
+  //     }
+  //   }
+  //   return listViewContainer;
+  // }
 
   List<FitnessData> list = [];
   var timeSeries;
@@ -47,27 +143,15 @@ class FitnessData extends ChangeNotifier {
     ];
   }
 
-  List<FitnessDetails> get fitnessactivity => _fitnessactivity;
-
-  set fitnessactivity(List<FitnessDetails> val) {
-    _fitnessactivity = val;
-    notifyListeners();
-  }
-
-  int _todaysEventnumber = 0;
-
-  Map<DateTime, List<FitnessDetails>> get events => _events;
-  List<FitnessDetails> get selectedEvents => _selectedEvents;
-  int get todaysEventnumber => _todaysEventnumber;
   void updateTheme() {
     isDarkModeOn = !isDarkModeOn;
     notifyListeners();
   }
 
-  void eve() {
-    this._events = events;
-    notifyListeners();
-  }
+  // void eve() {
+  //   this._events = events;
+  //   notifyListeners();
+  // }
 
   List<MenuDetails> _allmenu = [
     MenuDetails(
@@ -166,15 +250,34 @@ class FitnessData extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addactivity({text, text1, selectedicon, picktime, pickdate}) {
-    fitnessactivity.add(FitnessDetails(
-        activity: text,
-        subactivity: text1,
-        icon: selectedicon.icon,
-        time: picktime,
-        date: pickdate));
+  whenSelectedDay({event}) {
+    selectedEvents = event.cast<FitnessDetails>();
     notifyListeners();
   }
+
+  addactivity({text, text1, selectedicon, picktime, pickdate, controller}) {
+    events[controller].add(
+      FitnessDetails(
+        activity: text,
+        subactivity: text1,
+        icon: selectedicon,
+        time: picktime,
+        date: pickdate,
+      ),
+    );
+
+    notifyListeners();
+  }
+  // void addactivity({text, text1, selectedicon, picktime, pickdate, controller}) {
+  //   fitnessactivity.add(FitnessDetails(
+  //       activity: text,
+  //       subactivity: text1,
+  //       icon: selectedicon.icon,
+  //       time: picktime,
+  //       date: pickdate,));
+
+  //   notifyListeners();
+  // }
 
   void addmenu({texts, texts1, selectedicon, picktime, pickdate}) {
     fitnessmenu.add(MenuDetails(

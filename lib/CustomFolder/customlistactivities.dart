@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class CustomActivities extends StatelessWidget {
+  
+
   @override
   Widget build(BuildContext context) {
-    var activitydetails = Provider.of<FitnessData>(context).fitnessactivity;
+    var activitydetails = Provider.of<FitnessData>(context).selectedEvents;
 
     return SingleChildScrollView(
       child: Container(
@@ -30,26 +32,31 @@ class CustomActivities extends StatelessWidget {
                             decoration: BoxDecoration(
                                 color: Colors.orange,
                                 borderRadius: BorderRadius.circular(10.0)),
-                            child: Icon(
-                              activitydetails[i].icon,
-                              size: 30,
-                            ),
+                            // child: Icon(
+                            //   // activitydetails[i].icon,
+                              
+                            //   size: 30,
+                            // ),
                           ),
                         ),
                         SizedBox(
                           width: 10,
                         ),
+                        //  Text(activitydetails[i].date == displayDate?activitydetails[i].activity : ''),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(activitydetails[i].activity),
+                            // Text(activity),
                             Text(activitydetails[i].subactivity),
+                            // Text(subactivity),
                           ],
                         ),
                       ],
                     ),
                   ),
                   Text(activitydetails[i].time),
+                  // Text(time),
                 ],
               );
             },

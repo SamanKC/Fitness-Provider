@@ -17,8 +17,7 @@ void main() => runApp(
           ChangeNotifierProvider<FitnessData>(
               builder: (BuildContext context) => FitnessData())
         ],
-        child:
-            Consumer<FitnessData>(builder: (context, value, child) => MyApp()),
+        child: MyApp(),
       ),
     );
 
