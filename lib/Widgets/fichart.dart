@@ -1,5 +1,7 @@
+import 'package:fitness_provider/Provider/alldata.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class BarChartPage extends StatefulWidget {
   @override
@@ -9,23 +11,26 @@ class BarChartPage extends StatefulWidget {
 class BarChartPageState extends State<BarChartPage> {
   @override
   Widget build(BuildContext context) {
-    return Card(
-      // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
-
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              height: 80,
-              child: BarChart(
-                mainBarData(),
-              ),
+    return Container(
+      height: 116,
+      decoration: BoxDecoration(
+        color: Provider.of<FitnessData>(context).isDarkModeOn
+            ? Color(0xFF000099)
+            : Colors.white,
+        borderRadius: new BorderRadius.circular(20.0),
+      ),
+      padding: const EdgeInsets.all(18.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            height: 80,
+            child: BarChart(
+              mainBarData(),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -33,7 +38,7 @@ class BarChartPageState extends State<BarChartPage> {
   BarChartGroupData makeGroupData(
     int x,
     double y, {
-    Color barColor = Colors.white,
+    Color barColor = Colors.blueAccent,
     double width = 12,
     List<int> showTooltips = const [],
   }) {
@@ -44,10 +49,12 @@ class BarChartPageState extends State<BarChartPage> {
           y: y,
           color: barColor,
           width: width,
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(5), topRight: Radius.circular(5)),
           backDrawRodData: BackgroundBarChartRodData(
             show: true,
             y: 20,
-            color: Colors.blue,
+            color: Colors.blue[50],
           ),
         ),
       ],
@@ -60,15 +67,15 @@ class BarChartPageState extends State<BarChartPage> {
           case 0:
             return makeGroupData(0, 5);
           case 1:
-            return makeGroupData(1, 6.5);
+            return makeGroupData(1, 7.5);
           case 2:
-            return makeGroupData(2, 5);
+            return makeGroupData(2, 3);
           case 3:
-            return makeGroupData(3, 7.5);
+            return makeGroupData(3, 10.5);
           case 4:
-            return makeGroupData(4, 9);
+            return makeGroupData(4, 15);
           case 5:
-            return makeGroupData(5, 11.5);
+            return makeGroupData(5, 12);
           case 6:
             return makeGroupData(6, 6.5);
           default:
@@ -83,7 +90,7 @@ class BarChartPageState extends State<BarChartPage> {
         bottomTitles: SideTitles(
           showTitles: true,
           textStyle: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14),
+              color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 14),
           margin: 16,
           getTitles: (double value) {
             switch (value.toInt()) {

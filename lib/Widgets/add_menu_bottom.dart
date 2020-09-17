@@ -226,6 +226,8 @@ import 'package:intl/intl.dart';
 
 import 'package:provider/provider.dart';
 
+import '../Provider/alldata.dart';
+
 class AddMenuScreen extends StatefulWidget {
   @override
   _AddMenuScreenState createState() => _AddMenuScreenState();
@@ -237,6 +239,7 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
   DateTime currentdate = DateTime.now();
   TimeOfDay _currenttime = TimeOfDay.now();
   MenuIcons selecteduser;
+  FitnessData fitness;
 
   Future<Null> _selectdate(BuildContext context) async {
     final DateTime _seldate = await showDatePicker(
@@ -272,14 +275,19 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
     var addmenu = Provider.of<FitnessData>(context, listen: false);
     final displayDate = DateFormat.yMMMd().format(currentdate);
     var iconsdetails = Provider.of<FitnessData>(context).iconsmenu;
+    fitness = Provider.of<FitnessData>(context, listen: false);
 
     return Container(
-      color: Color(0xff757575),
+      color: Provider.of<FitnessData>(context).isDarkModeOn
+          ? Color(0xFF00002E)
+          : Color(0xff757575),
       height: 410,
       child: Container(
         padding: EdgeInsets.all(20.0),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Provider.of<FitnessData>(context).isDarkModeOn
+              ? Color(0xFF00008B)
+              : Colors.white,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(20.0),
             topRight: Radius.circular(20.0),
@@ -352,20 +360,31 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
                     selecteduser = newvalue;
                   });
                 },
-                items: iconsdetails.map<DropdownMenuItem<MenuIcons>>(
-                    (MenuIcons value) {
+                items: iconsdetails
+                    .map<DropdownMenuItem<MenuIcons>>((MenuIcons value) {
                   return DropdownMenuItem<MenuIcons>(
                     value: value,
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        value.icon,
-                        SizedBox(
-                          width: 10,
+                        Container(
+                          child: Row(
+                            children: [
+                              value.icon,
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                value.icontitle,
+                                style: TextStyle(color: Colors.black),
+                              ),
+                            ],
+                          ),
                         ),
-                        Text(
-                          value.icontitle,
-                          style: TextStyle(color: Colors.black),
-                        ),
+                        CircleAvatar(
+                          backgroundColor: value.color,
+                          radius: 2,
+                        )
                       ],
                     ),
                   );
@@ -374,19 +393,6 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
             ),
             Row(
               children: [
-                Text("Date: "),
-                FlatButton(
-                  child: Container(
-                      padding: EdgeInsets.all(8),
-                      color: Colors.lightBlue,
-                      child: Text('$displayDate')),
-                  onPressed: () {
-                    _selectdate(context);
-                  },
-                ),
-                SizedBox(
-                  width: 5,
-                ),
                 Text("Time: "),
                 FlatButton(
                   child: Container(
@@ -400,24 +406,59 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
               ],
             ),
             FlatButton(
-              child: Text(
-                'Add',
-                style: TextStyle(
-                  color: Colors.white,
+                child: Text(
+                  'Add',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
                 ),
-              ),
-              color: Colors.lightBlueAccent,
-              onPressed: () {
-                addmenu.addmenu(
-                    texts: _actcontroller.text,
-                    texts1: _subactcontroller.text,
-                    pickdate: displayDate,
-                    picktime: formattedTimeOfDay,
-                    selectedicon: selecteduser.icon);
+                color: Colors.lightBlueAccent,
+                onPressed: () {
+                  var theControllerMethod = fitness.controller.selectedDay;
+                  if (fitness.eventsmenu[fitness.controller.selectedDay] !=
+                      null) {
+                    print(
+                        "-----------------------------sssfasdjfhjkashfdjkhasjkdfhasdfasdfasdfasdfsssssss--------------");
 
-                Navigator.pop(context);
-              },
-            ),
+                    // try {
+                    //   fitness.addmenu(
+                    //       text: _actcontroller.text,
+                    //       text1: _subactcontroller.text,
+                    //       selectedicon: selecteduser.icon,
+                    //       picktime: formattedTimeOfDay,
+                    //       controller: theControllerMethod);
+                    // } catch (e) {
+                    //   print("samanaksdfsadf");
+                    // }
+                    fitness.addmenu(
+                        text: _actcontroller.text,
+                        text1: _subactcontroller.text,
+                        selectedicon: selecteduser.icon,
+                        color: selecteduser.color,
+                        picktime: formattedTimeOfDay,
+                        controller: theControllerMethod);
+                  } else {
+                    print(
+                        "----------------------sdfjhasjdfhjkashfjkshdfjkhasfd---------------------");
+
+                    fitness.showingTheEventmenu(
+                        menu: _actcontroller.text,
+                        submenu: _subactcontroller.text,
+                        icon: selecteduser.icon,
+                        color: selecteduser.color,
+                        time: formattedTimeOfDay,
+                        controller: theControllerMethod
+                        // fitness.addactivity(
+                        //   text: _actcontroller.text,
+                        //   text1: _subactcontroller.text,
+                        //   selectedicon: selecteduser.icon,
+                        //   picktime: formattedTimeOfDay,
+                        //   controller: theControllerMethod,
+                        );
+                    print(fitness.eventsmenu);
+                    Navigator.pop(context);
+                  }
+                }),
           ],
         ),
       ),

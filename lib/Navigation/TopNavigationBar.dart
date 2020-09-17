@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../Provider/alldata.dart';
 
 class TopBar extends StatelessWidget {
   @override
@@ -12,12 +15,25 @@ class TopBar extends StatelessWidget {
           Icon(
             Icons.dehaze,
             size: 30.0,
+            color: Provider.of<FitnessData>(context).isDarkModeOn
+                ? Colors.white
+                : Color(0xFF000099),
           ),
           Icon(
             Icons.show_chart,
             size: 30.0,
+            color: Provider.of<FitnessData>(context).isDarkModeOn
+                ? Colors.white
+                : Color(0xFF000099),
           ),
-          IconButton(icon: Icon(Icons.add_alert), onPressed: () {}),
+          IconButton(
+              icon: Icon(
+                Icons.add_alert,
+                color: Provider.of<FitnessData>(context).isDarkModeOn
+                    ? Colors.white
+                    : Color(0xFF000099),
+              ),
+              onPressed: () {}),
         ],
       ),
     );

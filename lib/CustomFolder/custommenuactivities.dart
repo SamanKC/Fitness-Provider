@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 class CustomMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var menudetails = Provider.of<FitnessData>(context).fitnessmenu;
+    var menudetails = Provider.of<FitnessData>(context).selectedEventsmenu;
 
     return SingleChildScrollView(
       child: Container(
@@ -29,10 +29,10 @@ class CustomMenu extends StatelessWidget {
                             decoration: BoxDecoration(
                                 color: Colors.orange,
                                 borderRadius: BorderRadius.circular(10.0)),
-                            child: Icon(
-                              menudetails[i].icon,
-                              size: 30,
-                            ),
+                            // child: Icon(
+                            //   menudetails[i].icon.icon,
+                            //   size: 30,
+                            // ),
                           ),
                         ),
                         SizedBox(

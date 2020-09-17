@@ -17,6 +17,9 @@ class _Page4State extends State<Page4> {
           child: Column(
         children: <Widget>[
           TopBar(),
+          SizedBox(
+            height: 20,
+          ),
           Center(
             child: CircleAvatar(
               radius: 55,
@@ -49,9 +52,12 @@ class _Page4State extends State<Page4> {
                   ],
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 10,
                 ),
                 Divider(color: Colors.black),
+                SizedBox(
+                  height: 10,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
@@ -66,9 +72,12 @@ class _Page4State extends State<Page4> {
                   ],
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 10,
                 ),
                 Divider(color: Colors.black),
+                SizedBox(
+                  height: 10,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
@@ -83,9 +92,12 @@ class _Page4State extends State<Page4> {
                   ],
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 10,
                 ),
                 Divider(color: Colors.black),
+                SizedBox(
+                  height: 10,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[

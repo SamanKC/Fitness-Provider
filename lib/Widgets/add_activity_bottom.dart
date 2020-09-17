@@ -20,14 +20,14 @@ class _AddActivityScreenState extends State<AddActivityScreen> {
   DateTime currentdate = DateTime.now();
   TimeOfDay _currenttime = TimeOfDay.now();
   ActivityIcons selecteduser;
-  CalendarController _controller;
+
   FitnessData fitness;
   FitnessDetails fitnessDetails;
 
   @override
   void initState() {
     super.initState();
-    _controller = CalendarController();
+
     _actcontroller = TextEditingController();
     _subactcontroller = TextEditingController();
   }
@@ -63,17 +63,21 @@ class _AddActivityScreenState extends State<AddActivityScreen> {
     final MaterialLocalizations localizations =
         MaterialLocalizations.of(context);
     final formattedTimeOfDay = localizations.formatTimeOfDay(_currenttime);
-    var fitness = Provider.of<FitnessData>(context, listen: false);
+    fitness = Provider.of<FitnessData>(context, listen: false);
     final displayDate = DateFormat.yMMMd().format(currentdate);
     var iconsdetails = Provider.of<FitnessData>(context).icons;
-    var theControllerMethod = _controller.selectedDay;
+
     return Container(
-      color: Color(0xff757575),
+      color: Provider.of<FitnessData>(context).isDarkModeOn
+          ? Color(0xFF00002E)
+          : Color(0xff757575),
       height: 410,
       child: Container(
         padding: EdgeInsets.all(20.0),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Provider.of<FitnessData>(context).isDarkModeOn
+              ? Color(0xFF000066)
+              : Colors.white,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(20.0),
             topRight: Radius.circular(20.0),
@@ -140,6 +144,9 @@ class _AddActivityScreenState extends State<AddActivityScreen> {
               // width: MediaQuery.of(context).size.width - 40,
               child: DropdownButton<ActivityIcons>(
                 hint: Text("Select icon"),
+                dropdownColor: Provider.of<FitnessData>(context).isDarkModeOn
+                    ? Color(0xFF000066)
+                    : Colors.white,
                 value: selecteduser,
                 onChanged: (ActivityIcons newvalue) {
                   setState(() {
@@ -151,15 +158,31 @@ class _AddActivityScreenState extends State<AddActivityScreen> {
                   return DropdownMenuItem<ActivityIcons>(
                     value: value,
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        value.icon,
-                        SizedBox(
-                          width: 10,
+                        Container(
+                          child: Row(
+                            children: [
+                              value.icon,
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                value.icontitle,
+                                style: TextStyle(
+                                  color: Provider.of<FitnessData>(context)
+                                          .isDarkModeOn
+                                      ? Colors.white
+                                      : Colors.black,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                        Text(
-                          value.icontitle,
-                          style: TextStyle(color: Colors.black),
-                        ),
+                        CircleAvatar(
+                          backgroundColor: value.color,
+                          radius: 2,
+                        )
                       ],
                     ),
                   );
@@ -168,19 +191,6 @@ class _AddActivityScreenState extends State<AddActivityScreen> {
             ),
             Row(
               children: [
-                Text("Date: "),
-                FlatButton(
-                  child: Container(
-                      padding: EdgeInsets.all(8),
-                      color: Colors.lightBlue,
-                      child: Text('$displayDate')),
-                  onPressed: () {
-                    _selectdate(context);
-                  },
-                ),
-                SizedBox(
-                  width: 5,
-                ),
                 Text("Time: "),
                 FlatButton(
                   child: Container(
@@ -204,17 +214,24 @@ class _AddActivityScreenState extends State<AddActivityScreen> {
                 onPressed: () {
                   print("-------------------------------------------");
                   print(fitness.events.length);
-                  if (fitness.events[_controller.selectedDay] != null) {
+                  // print(fitness.events[0][0]);
+                  print(fitness.events);
+                  var theControllerMethod = fitness.controller.selectedDay;
+                  print(theControllerMethod);
+                  print(
+                      "-------------------------------------------------------------------------------------");
+                  fitness.sortdate();
+                  if (fitness.events[fitness.controller.selectedDay] != null) {
                     print(
                         "-----------------------------ssssssssssssssssssssssssssssssss--------------");
 
                     fitness.addactivity(
-                      text: _actcontroller.text,
-                      text1: _subactcontroller.text,
-                      selectedicon: selecteduser,
-                      picktime: formattedTimeOfDay,
-                      controller: theControllerMethod,
-                    );
+                        text: _actcontroller.text,
+                        text1: _subactcontroller.text,
+                        selectedicon: selecteduser.icon,
+                        color: selecteduser.color,
+                        picktime: formattedTimeOfDay,
+                        controller: theControllerMethod);
                   } else {
                     print(
                         "----------------------sdfjhasjdfhjkashfjkshdfjkhasfd---------------------");
@@ -222,10 +239,19 @@ class _AddActivityScreenState extends State<AddActivityScreen> {
                     fitness.showingTheEvent(
                         activity: _actcontroller.text,
                         subactivity: _subactcontroller.text,
-                        icon: selecteduser,
+                        icon: selecteduser.icon,
+                        color: selecteduser.color,
                         time: formattedTimeOfDay,
-                        controller: theControllerMethod);
+                        controller: theControllerMethod
+                        // fitness.addactivity(
+                        //   text: _actcontroller.text,
+                        //   text1: _subactcontroller.text,
+                        //   selectedicon: selecteduser.icon,
+                        //   picktime: formattedTimeOfDay,
+                        //   controller: theControllerMethod,
+                        );
                   }
+                  print(fitness.events);
 
                   // if (fitnessDetails == null) {
                   //   print("No list");

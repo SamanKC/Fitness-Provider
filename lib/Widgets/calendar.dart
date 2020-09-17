@@ -1,8 +1,7 @@
-import 'package:fitness_provider/CustomFolder/customlistactivities.dart';
 import 'package:fitness_provider/Provider/alldata.dart';
 import 'package:fitness_provider/Provider/dataconstraint.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+// import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class Page2Calendar extends StatefulWidget {
@@ -12,7 +11,6 @@ class Page2Calendar extends StatefulWidget {
 
 class _Page2CalendarState extends State<Page2Calendar> {
   CalendarController _controller;
-  Map<DateTime, List<FitnessData>> _events;
   FitnessData fitnessData;
   FitnessDetails fitnessDetails;
   @override
@@ -23,7 +21,7 @@ class _Page2CalendarState extends State<Page2Calendar> {
 
   @override
   Widget build(BuildContext context) {
-    var _calendaractivity = Provider.of<FitnessData>(context);
+    // var _calendaractivity = Provider.of<FitnessData>(context);
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

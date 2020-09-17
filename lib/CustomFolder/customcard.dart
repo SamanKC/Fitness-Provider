@@ -2,6 +2,7 @@ import 'package:fitness_provider/Provider/alldata.dart';
 import 'package:fitness_provider/Widgets/linearbar.dart';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class CustomCard extends StatelessWidget {
@@ -12,8 +13,17 @@ class CustomCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var activitydetails = Provider.of<FitnessData>(context).fitnessactivity;
+    var activitydetails = Provider.of<FitnessData>(context).selectedEvents;
+    DateTime now = DateTime.now();
 
+    // DateTime localDateTime = dateTime.toLocal();
+
+    // String roughTimeString = DateFormat('jm').format(dateTime);
+    // if (localDateTime.day == now.day &&
+    //     localDateTime.month == now.month &&
+    //     localDateTime.year == now.year) {
+    //   return roughTimeString;
+    // }
     return ListView.builder(
         itemCount: activitydetails.length,
         itemBuilder: (BuildContext context, i) {
@@ -31,15 +41,14 @@ class CustomCard extends StatelessWidget {
                     Row(
                       children: <Widget>[
                         Icon(
-                          // activitydetails[i].icon,
-                          Icons.local_library,
-                          size: 38,
+                          activitydetails[i].icon.icon,
+                          size: 34,
                           color: Provider.of<FitnessData>(context).isDarkModeOn
                               ? Color(0xFF000066)
                               : Colors.white,
                         ),
                         SizedBox(
-                          width: 10,
+                          width: 15,
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,

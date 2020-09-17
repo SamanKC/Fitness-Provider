@@ -4,11 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class CustomActivities extends StatelessWidget {
-  
-
+  FitnessData fitness;
   @override
   Widget build(BuildContext context) {
     var activitydetails = Provider.of<FitnessData>(context).selectedEvents;
+    fitness = Provider.of<FitnessData>(context, listen: false);
+
+    // if (fitness.controller.isToday(day) ==) {
+
+    // } else {
+    // }
 
     return SingleChildScrollView(
       child: Container(
@@ -33,8 +38,8 @@ class CustomActivities extends StatelessWidget {
                                 color: Colors.orange,
                                 borderRadius: BorderRadius.circular(10.0)),
                             // child: Icon(
-                            //   // activitydetails[i].icon,
-                              
+                            //   activitydetails[i].icon.icon,
+                            //   color: Colors.white,
                             //   size: 30,
                             // ),
                           ),
