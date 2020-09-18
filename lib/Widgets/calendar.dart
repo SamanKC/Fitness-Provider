@@ -21,26 +21,11 @@ class _Page2CalendarState extends State<Page2Calendar> {
 
   @override
   Widget build(BuildContext context) {
-    // var _calendaractivity = Provider.of<FitnessData>(context);
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           TableCalendar(
-              // events: _calendaractivity.events,
-              // onDaySelected: (day, events) {
-              //   var theControllerMethod = _controller.selectedDay;
-              //   if (fitnessData.events[_controller.selectedDay] != null) {
-              //     fitnessData.fitnessactivity;
-              //   } else {
-              //     // fitnessData.showEvents(
-              //     //     {fitnessact: _calendaractivity.fitness, controller: theControllerMethod});
-              //     fitnessData.showEvents({
-              //       fitnessact: _calendaractivity.fitness,
-              //       controller: theControllerMethod,
-              //     });
-              //   }
-              // },
               initialCalendarFormat: CalendarFormat.week,
               calendarStyle: CalendarStyle(
                 todayColor: Colors.blue,

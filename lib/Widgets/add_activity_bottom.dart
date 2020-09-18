@@ -242,44 +242,10 @@ class _AddActivityScreenState extends State<AddActivityScreen> {
                         icon: selecteduser.icon,
                         color: selecteduser.color,
                         time: formattedTimeOfDay,
-                        controller: theControllerMethod
-                        // fitness.addactivity(
-                        //   text: _actcontroller.text,
-                        //   text1: _subactcontroller.text,
-                        //   selectedicon: selecteduser.icon,
-                        //   picktime: formattedTimeOfDay,
-                        //   controller: theControllerMethod,
-                        );
+                        controller: theControllerMethod);
                   }
                   print(fitness.events);
 
-                  // if (fitnessDetails == null) {
-                  //   print("No list");
-                  // } else {
-                  //   if (fitness.events[_controller.selectedDay] != null) {
-                  //     activityadd.addactivity(
-                  //         text: _actcontroller.text,
-                  //         text1: _subactcontroller.text,
-                  //         pickdate: displayDate,
-                  //         picktime: formattedTimeOfDay,
-                  //         selectedicon: selecteduser.icon,
-                  //         controller: theControllerMethod);
-                  //   } else {
-                  //     activityadd.showingTheEvent(
-                  //         activity: _actcontroller.text,
-                  //         subactivity: _subactcontroller.text,
-                  //         time: formattedTimeOfDay,
-                  //         icon: selecteduser.icon,
-                  //         controller: theControllerMethod);
-                  //   }
-
-                  // activityadd.addactivity(
-                  //     text: _actcontroller.text,
-                  //     text1: _subactcontroller.text,
-                  //     pickdate: displayDate,
-                  //     picktime: formattedTimeOfDay,
-                  //     selectedicon: selecteduser.icon,
-                  //     controller: theControllerMethod);
                   Navigator.pop(context);
                 }),
           ],

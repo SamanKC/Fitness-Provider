@@ -28,7 +28,7 @@ class TopBar extends StatelessWidget {
           ),
           IconButton(
               icon: Icon(
-                Icons.add_alert,
+                Icons.notifications_none,
                 color: Provider.of<FitnessData>(context).isDarkModeOn
                     ? Colors.white
                     : Color(0xFF000099),

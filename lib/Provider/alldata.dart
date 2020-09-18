@@ -68,33 +68,6 @@ class FitnessData extends ChangeNotifier {
     notifyListeners();
   }
 
-  // List<FitnessDetails> _fitnessactivity = [
-  //   FitnessDetails(
-  //     activity: 'Running',
-  //     subactivity: 'run 5 km a day',
-  //     icon: Icon(Icons.ac_unit),
-  //     time: "11:37 PM",
-  //   ),
-  //   FitnessDetails(
-  //     activity: 'Running',
-  //     subactivity: 'run 5 km a day',
-  //     icon: Icon(Icons.ac_unit),
-  //     time: "11:37 PM",
-  //   ),
-  //   FitnessDetails(
-  //     activity: 'Running',
-  //     subactivity: 'run 5 km a day',
-  //     icon: Icon(Icons.ac_unit),
-  //     time: "11:37 PM",
-  //   ),
-  // ];
-
-  // List<FitnessDetails> get fitnessactivity => _fitnessactivity;
-
-  // set fitnessactivity(List<FitnessDetails> val) {
-  //   _fitnessactivity = val;
-  //   notifyListeners();
-  // }
 
   List<FitnessData> list = [];
   var timeSeries;
@@ -113,42 +86,6 @@ class FitnessData extends ChangeNotifier {
     notifyListeners();
   }
 
-  // List<MenuDetails> _allmenu = [
-  //   MenuDetails(
-  //     menu: 'Breakfast',
-  //     submenu: 'eat healthy',
-  //     icon: Icons.menu,
-  //     time: "11:37 PM",
-  //     date: "Sep 10,2020",
-  //   ),
-  //   MenuDetails(
-  //     menu: 'Breakfast',
-  //     submenu: 'eat healthy',
-  //     icon: Icons.menu,
-  //     time: "11:37 PM",
-  //     date: "Sep 10,2020",
-  //   ),
-  //   MenuDetails(
-  //     menu: 'Breakfast',
-  //     submenu: 'eat healthy',
-  //     icon: Icons.menu,
-  //     time: "11:37 PM",
-  //     date: "Sep 10,2020",
-  //   ),
-  //   MenuDetails(
-  //     menu: 'Breakfast',
-  //     submenu: 'eat healthy',
-  //     icon: Icons.menu,
-  //     time: "11:37 PM",
-  //     date: "Sep 10,2020",
-  //   ),
-  // ];
-  // List<MenuDetails> get fitnessmenu => _allmenu;
-
-  // set menu(List<MenuDetails> val) {
-  //   _allmenu = val;
-  //   notifyListeners();
-  // }
 
   List<ActivityIcons> _iconactivity = [
     ActivityIcons(
@@ -263,30 +200,7 @@ class FitnessData extends ChangeNotifier {
     );
     notifyListeners();
   }
-  // void addactivity({text, text1, selectedicon, picktime, pickdate, controller}) {
-  //   fitnessactivity.add(FitnessDetails(
-  //       activity: text,
-  //       subactivity: text1,
-  //       icon: selectedicon.icon,
-  //       time: picktime,
-  //       date: pickdate,));
-  //   notifyListeners();
-  // }
-
-  // void addmenu({texts, texts1, selectedicon, picktime, pickdate}) {
-  //   fitnessmenu.add(MenuDetails(
-  //     menu: texts,
-  //     submenu: texts1,
-  //     icon: selectedicon.icon,
-  //     time: picktime,
-  //     date: pickdate,
-  //   ));
-  //   notifyListeners();
-  // }
-
-  // showEvents({fitnessact, controller}) {
-  //   events[controller] = [FitnessDetails(activity: fitnessact.toString(), subactivity: controller)];
-  // }
+  
   void sortdate() {
     final now = DateTime.now();
     final today = DateTime(now.year, now.month, now.day);

@@ -29,8 +29,8 @@ class _Page3State extends State<Page3> {
 
     List<charts.Series<TimeSeriesSales, DateTime>> _createSampleData() {
       final data = [
-        new TimeSeriesSales(new DateTime(2020, 9, 1), 5),
-        new TimeSeriesSales(new DateTime(2020, 9, 2), 5),
+        new TimeSeriesSales(new DateTime(2020, 9, 1, 8), 5),
+        new TimeSeriesSales(new DateTime(2020, 9, 2, 8), 5),
         new TimeSeriesSales(new DateTime(2020, 9, 3), 25),
         new TimeSeriesSales(new DateTime(2020, 9, 4), 100),
         new TimeSeriesSales(new DateTime(2020, 9, 5), 75),
@@ -112,7 +112,7 @@ class _Page3State extends State<Page3> {
                                   ),
                                   Container(
                                     height: 120,
-                                    width: 100,
+                                    width: 120,
                                     child: ListView(
                                       children: [
                                         ...fitness.selectedEvents
@@ -146,7 +146,7 @@ class _Page3State extends State<Page3> {
                                                                         .white
                                                                     : Colors
                                                                         .black,
-                                                                fontSize: 20),
+                                                                fontSize: 16),
                                                           ),
                                                           // Text(activity),
                                                           Text(e.subactivity
@@ -215,60 +215,3 @@ class _Page3State extends State<Page3> {
   }
 }
 
-// class StatActivities extends StatelessWidget {
-//   final String act;
-//   final String subact;
-//   final IconData staticon;
-
-//   StatActivities({this.act, this.subact, this.staticon});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       child: Row(
-//         children: <Widget>[
-//           Icon(
-//             staticon,
-//             size: 36,
-//             color: Provider.of<FitnessData>(context).isDarkModeOn
-//                 ? Colors.white
-//                 : Color(0xFF000066),
-//           ),
-//           SizedBox(
-//             width: 10,
-//           ),
-//           Column(
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children: <Widget>[
-//               Text(
-//                 act,
-//                 style: TextStyle(
-//                   fontSize: 16,
-//                   color: Provider.of<FitnessData>(context).isDarkModeOn
-//                       ? Colors.white
-//                       : Color(0xFF000066),
-//                 ),
-//               ),
-//               RichText(
-//                 text: TextSpan(
-//                   text: subact,
-//                   style: TextStyle(
-//                     color: Provider.of<FitnessData>(context).isDarkModeOn
-//                         ? Color(0xFF000066)
-//                         : Colors.white,
-//                   ),
-//                   children: <TextSpan>[
-//                     TextSpan(text: ' km', style: TextStyle(color: Colors.grey)),
-//                   ],
-//                 ),
-//               ),
-//               SizedBox(
-//                 height: 10,
-//               ),
-//             ],
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }

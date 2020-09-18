@@ -4,10 +4,6 @@ import 'package:table_calendar/table_calendar.dart';
 
 import '../Navigation/TopNavigationBar.dart';
 import '../Provider/alldata.dart';
-import '../Provider/alldata.dart';
-import '../Provider/dataconstraint.dart';
-import '../Provider/dataconstraint.dart';
-import '../Provider/dataconstraint.dart';
 
 class Page2 extends StatefulWidget {
   @override
@@ -48,16 +44,6 @@ class _Page2State extends State<Page2> {
 
             headerVisible: false,
           ),
-          // Expanded(
-          //     child: Container(
-          //   decoration: BoxDecoration(
-          //       color: Provider.of<FitnessData>(context).isDarkModeOn
-          //           ? Color(0xFF000066)
-          //           : Colors.grey[100],
-          //       borderRadius: BorderRadius.only(
-          //           topLeft: Radius.circular(30),
-          //           topRight: Radius.circular(30))),
-          //   padding: EdgeInsets.all(16.0),
           Container(
             height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
@@ -86,7 +72,6 @@ class _Page2State extends State<Page2> {
                         )),
                   ],
                 ),
-
                 Container(
                   height: 130,
                   child: ListView(
@@ -164,55 +149,6 @@ class _Page2State extends State<Page2> {
                         )),
                   ],
                 ),
-                // Container(
-                //   height: 150,
-                //   child: ListView(
-                //       children: fitness.selectedEventsmenu
-                //           .map(
-                //             (e) => Container(
-                //               child: Padding(
-                //                 padding: const EdgeInsets.all(8.0),
-                //                 child: Row(
-                //                   children: [
-                //                     Container(
-                //                       height: 60,
-                //                       width: 60,
-                //                       // padding: EdgeInsets.all(18.0),
-                //                       decoration: BoxDecoration(
-                //                           color: Colors.orange,
-                //                           borderRadius:
-                //                               BorderRadius.circular(10.0)),
-                //                       child: Icon(
-                //                         // activitydetails[i].icon,
-                //                         e.icon.icon,
-                //                         size: 30,
-                //                       ),
-                //                     ),
-                //                     SizedBox(
-                //                       width: 10,
-                //                     ),
-                //                     //  Text(activitydetails[i].date == displayDate?activitydetails[i].activity : ''),
-                //                     Column(
-                //                       crossAxisAlignment:
-                //                           CrossAxisAlignment.start,
-                //                       children: <Widget>[
-                //                         Text(e.menu.toString()),
-                //                         // Text(activity),
-                //                         Text(e.submenu.toString()),
-                //                         // Text(subactivity),
-                //                       ],
-                //                     ),
-                //                     Spacer(),
-                //                     Text(e.time.toString()),
-                //                   ],
-                //                 ),
-                //               ),
-
-                //               // Text(time),
-                //             ),
-                //           )
-                //           .toList()),
-                // )
                 Container(
                   height: 200,
                   child: ListView(

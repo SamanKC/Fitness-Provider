@@ -6,9 +6,7 @@ import 'package:fitness_provider/Widgets/add_activity_bottom.dart';
 import 'package:fitness_provider/Widgets/add_menu_bottom.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-
 import 'Provider/alldata.dart';
 
 void main() => runApp(
